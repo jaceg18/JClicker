@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="603.0" stylesheets="@dark-theme.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jaceg18.jclicker.Controller">
+
+    <BorderPane fx:id="mainPane" prefHeight="305.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+        <!-- TOP: title + menu bar -->
+        <top>
+            <VBox alignment="CENTER" spacing="6" BorderPane.alignment="CENTER">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <padding>
+                        <Insets left="20" right="20" top="10" />
+                    </padding>
+                    <Label styleClass="title" text="JClicker" />
+                    <Region HBox.hgrow="ALWAYS" />
+               <Label fx:id="statusLabel" prefHeight="17.0" prefWidth="360.0" text="Status: Off" />
+                    <Label styleClass="footer-label" text="Created by ftJace" />
+                </HBox>
+
+                <MenuBar fx:id="menuBar">
+                    <Menu text="File">
+                        <MenuItem fx:id="saveProfile" text="Save" />
+                    </Menu>
+                    <Menu text="Edit">
+                        <MenuItem fx:id="openBindOptions" text="Binds" />
+                    </Menu>
+                    <Menu text="Help">
+                        <MenuItem fx:id="openAbout" text="About" />
+                        <MenuItem fx:id="openHelpProfile" text="Profiles" />
+                    </Menu>
+                </MenuBar>
+            </VBox>
+        </top>
+
+        <!-- CENTER: main controls -->
+        <center>
+            <GridPane alignment="TOP_CENTER" hgap="12" vgap="12">
+                <padding>
+                    <Insets bottom="10" left="20" right="20" top="20" />
+                </padding>
+                <columnConstraints>
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                </rowConstraints>
+
+                <!-- Mouse button -->
+                <Label text="Mouse Button:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <ComboBox fx:id="mouseButtonCombo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <CheckBox fx:id="useCurrentBox" text="Use Current Location" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+
+                <!-- Repeat options -->
+                <CheckBox fx:id="untilStopBox" text="Repeat Until Stopped" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="repeatField" prefWidth="120.0" promptText="Repeat Times" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <!-- Delay + custom coords -->
+                <TextField fx:id="delayField" prefWidth="130.0" promptText="Repeat Delay (MS)" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <CheckBox fx:id="useCustomBox" text="Use Custom Location" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <TextField prefWidth="40.0" promptText="X" GridPane.columnIndex="4" fx:id="xField" />
+                <TextField fx:id="yField" prefWidth="40.0" promptText="Y" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <ComboBox fx:id="profileCombo" prefWidth="150.0" promptText="Select Profile" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Button fx:id="loadProfile" onAction="#loadProfile" text="Load" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Button fx:id="deleteProfile" onAction="#onDeleteProfileClicked" prefHeight="36.0" prefWidth="136.0" text="Delete" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+
+            </GridPane>
+        </center>
+
+        <!-- BOTTOM: status + big toggle -->
+        <bottom>
+            <HBox alignment="CENTER_LEFT" spacing="10" BorderPane.alignment="CENTER">
+                <padding>
+                    <Insets bottom="10" left="20" right="20" top="10" />
+                </padding>
+            <ImageView fitHeight="27.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+            </ImageView>
+                <Label fx:id="profileLabel" text="Profile Loaded: N/A " />
+                <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="toggleButton" onAction="#onToggleButtonAction" styleClass="primary-button" text="Toggle On (F6)" />
+            </HBox>
+        </bottom>
+
+    </BorderPane>
+</AnchorPane>
